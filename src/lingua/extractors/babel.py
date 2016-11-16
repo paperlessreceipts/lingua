@@ -25,6 +25,8 @@ class BabelExtractor(Extractor):
         messages = self.extractor(fileobj, list(self.keywords.keys()),
                 comment_tags, self.config)
         for (lineno, function, args, comment) in messages:
+            if not args:
+                continue
             if not isinstance(args, (list, tuple)):
                 args = [args]
             args = [(None, a, lineno) for a in args]
